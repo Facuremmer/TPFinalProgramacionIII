@@ -14,6 +14,7 @@ namespace TPFinalProgIII.Services.Interfaces
         IEnumerable<Producto> GetAll();
         //Me trae un solo producto
         Producto GetOne(int productId);
+        IEnumerable<Producto> GetByName(string productName);
         //No devueve nada
         void DeleteProduct(Producto product);
         //Me devuelve un producto actualizado

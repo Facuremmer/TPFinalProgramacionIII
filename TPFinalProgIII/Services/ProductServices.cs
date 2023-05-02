@@ -28,6 +28,11 @@ namespace TPFinalProgIII.Services
             return _context.Producto.Include(c => c.IdTipoProductoNavigation).SingleOrDefault(x => x.IdProducto == productId);
         }
 
+        public IEnumerable<Producto> GetByName (string productName)
+        {
+            return _context.Producto.Where(x => EF.Functions.Like(x.IdTipoProductoNavigation.Descripcion, $"%{productName}")).Include(c => c.IdTipoProductoNavigation);
+        }
+
         public void DeleteProduct(Producto product)
         {
             _context.Producto.Remove(product);

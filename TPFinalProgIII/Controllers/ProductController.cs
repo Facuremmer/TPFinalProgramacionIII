@@ -46,6 +46,21 @@ namespace TPFinalProgIII.Controllers
             var productDTO = _mapper.Map<ProductDTO>(product);
             return productDTO;
         }
+
+        [Route("byName")]
+        [HttpGet]
+
+        public ActionResult<ProductDTO> GetByName(string productName)
+        {
+            var product = _productServices.GetByName(productName);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            var productDTO = _mapper.Map<IEnumerable<ProductDTO>>(product);
+            return Ok(productDTO);
+        }
         
         [HttpDelete("{productId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
