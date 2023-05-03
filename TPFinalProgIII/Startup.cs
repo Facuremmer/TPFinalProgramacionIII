@@ -29,6 +29,7 @@ namespace TPFinalProgIII
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
 
@@ -61,6 +62,13 @@ namespace TPFinalProgIII
         //VER COMO ARREGLAR PARA PODER USAR SWAGGER, DE ULTIMA FIJARME EN EL PROYECTO QUE ARRANCAMOS EL AÑO PASADO.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:4200");
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
