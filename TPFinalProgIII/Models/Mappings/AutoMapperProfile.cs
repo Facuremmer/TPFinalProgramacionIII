@@ -21,7 +21,7 @@ namespace TPFinalProgIII.Models.Mappings
         {
             //De esta manera solo mando estas dos campos que necesito mandar y no todo lo que contiene la tabla producto.
             CreateMap<Producto, ProductDTO>()
-                //PROBAR SI ESTO ANDA.
+                .ForMember(x => x.idProducto, opt => opt.MapFrom(o => o.IdProducto))
                 .ForMember(x => x.NombreProducto, opt => opt.MapFrom(o => o.IdTipoProductoNavigation.Descripcion))
                 .ForMember(x => x.StockActual, opt => opt.MapFrom(o => o.StockActual));
 
