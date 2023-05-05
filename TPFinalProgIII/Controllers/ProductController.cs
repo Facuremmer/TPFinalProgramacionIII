@@ -37,13 +37,13 @@ namespace TPFinalProgIII.Controllers
             var product = _productServices.GetAll();
             var productDTO = _mapper.Map<IEnumerable<ProductDTO>>(product);
             return productDTO;
-        }
+        } 
 
         [HttpGet("{productId}")]
-        public ProductDTO GetOne(int productId)
+        public ProductGetId GetOne(int productId)
         {
             var product = _productServices.GetOne(productId);
-            var productDTO = _mapper.Map<ProductDTO>(product);
+            var productDTO = _mapper.Map<ProductGetId>(product);
             return productDTO;
         }
 
