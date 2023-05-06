@@ -25,12 +25,6 @@ namespace TPFinalProgIII.Models.Mappings
                 .ForMember(x => x.NombreProducto, opt => opt.MapFrom(o => o.IdTipoProductoNavigation.Descripcion))
                 .ForMember(x => x.StockActual, opt => opt.MapFrom(o => o.StockActual));
 
-            CreateMap<Producto, ProductGetId>()
-                .ForMember(x => x.idProducto, opt => opt.MapFrom(o => o.IdProducto))
-                .ForMember(x => x.NombreProducto, opt => opt.MapFrom(o => o.IdTipoProductoNavigation.Descripcion))
-                .ForMember(x => x.CodigoProducto, opt => opt.MapFrom(o => o.CodigoProducto))
-                .ForMember(x => x.StockActual, opt => opt.MapFrom(o => o.StockActual));
-
             CreateMap<Direccion, AdressDTO>()
                 .ForMember(x => x.Provincia, opt => opt.MapFrom(o => o.Provincia))
                 .ForMember(x => x.Ciudad, opt => opt.MapFrom(o => o.Ciudad))

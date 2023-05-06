@@ -45,7 +45,6 @@ namespace TPFinalProgIII.Services
             if (product != null)
             {
                 product.IdTipoProducto = data.idTipoProducto;
-                product.CodigoProducto = data.CodigoProducto;
                 product.StockActual = data.StockActual;
 
                 _context.SaveChanges();
@@ -58,7 +57,6 @@ namespace TPFinalProgIII.Services
             var product = new Producto()
             {
                 IdProducto = data.idProducto,
-                CodigoProducto = data.CodigoProducto,
                 IdTipoProducto = data.idTipoProducto,
                 StockActual = data.StockActual
             };

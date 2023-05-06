@@ -263,17 +263,11 @@ namespace TPFinalProgIII.Models
                 entity.HasKey(e => e.IdProducto)
                     .HasName("PK__Producto__07F4A13247290A69");
 
-                entity.HasIndex(e => e.CodigoProducto, "CodigoProducto")
-                    .IsUnique();
-
-                entity.HasIndex(e => e.CodigoProducto, "UQ__Producto__785B009F2F74E941")
-                    .IsUnique();
 
                 entity.Property(e => e.IdProducto)
                     .ValueGeneratedNever()
                     .HasColumnName("idProducto");
 
-                entity.Property(e => e.CodigoProducto).HasColumnType("numeric(18, 0)");
 
                 entity.Property(e => e.IdTipoProducto).HasColumnName("idTipoProducto");
 

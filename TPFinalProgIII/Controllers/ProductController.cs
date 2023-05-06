@@ -40,10 +40,10 @@ namespace TPFinalProgIII.Controllers
         } 
 
         [HttpGet("{productId}")]
-        public ProductGetId GetOne(int productId)
+        public ProductDTO GetOne(int productId)
         {
             var product = _productServices.GetOne(productId);
-            var productDTO = _mapper.Map<ProductGetId>(product);
+            var productDTO = _mapper.Map<ProductDTO>(product);
             return productDTO;
         }
 

@@ -15,7 +15,6 @@ namespace TPFinalProgIII.Models
 
         public int IdProducto { get; set; }
         public int? IdTipoProducto { get; set; }
-        public decimal? CodigoProducto { get; set; }
         public int? StockActual { get; set; }
 
         public virtual TipoProducto IdTipoProductoNavigation { get; set; }
