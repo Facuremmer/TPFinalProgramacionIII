@@ -39,6 +39,7 @@ namespace TPFinalProgIII.Models.Mappings
                 .ForMember(x => x.NombreCompleto, opt => opt.MapFrom(o => o.NombreCompleto));
 
             CreateMap<TipoProducto, ProductTypeDTO>()
+                .ForMember(x => x.idTipoProducto, opt => opt.MapFrom(o => o.IdTipoProducto))
                 .ForMember(x => x.Descripcion, opt => opt.MapFrom(o => o.Descripcion));
 
             CreateMap<Proveedor, ProviderDTO>()

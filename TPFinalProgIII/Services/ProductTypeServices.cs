@@ -29,7 +29,7 @@ namespace TPFinalProgIII.Services
             _context.SaveChanges();
         }
 
-        public TipoProducto UpdateProductType(ProductTypeCreateOrUpdate data)
+        public TipoProducto UpdateProductType(ProductTypeDTO data)
         {
             var productType = GetOne(data.idTipoProducto);
             if (productType != null)
@@ -41,7 +41,7 @@ namespace TPFinalProgIII.Services
             return productType;
         }
 
-        public TipoProducto CreateProductType(ProductTypeCreateOrUpdate data)
+        public TipoProducto CreateProductType(ProductTypeCreate data)
         {
             var productType = new TipoProducto()
             {

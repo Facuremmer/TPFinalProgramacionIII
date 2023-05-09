@@ -9,7 +9,6 @@ namespace TPFinalProgIII.Models.DataTranfers.Product
     {
         public virtual int idProducto { get; set; }
         public virtual int idTipoProducto { get; set; }
-        public virtual long CodigoProducto { get; set; }
         public virtual int StockActual { get; set; }
     }
 }

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace TPFinalProgIII.Models.DataTranfers.ProductType
 {
-    public class ProductTypeCreateOrUpdate
+    public class ProductTypeCreate
     {
-        public virtual int idTipoProducto { get; set; }
         public virtual string Descripcion { get; set; }
     }
 }

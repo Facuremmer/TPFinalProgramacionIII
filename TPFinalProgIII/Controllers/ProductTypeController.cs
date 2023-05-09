@@ -73,7 +73,7 @@ namespace TPFinalProgIII.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<ProductTypeDTO> UpdateProductType(ProductTypeCreateOrUpdate productTypeData)
+        public ActionResult<ProductTypeDTO> UpdateProductType(ProductTypeDTO productTypeData)
         {
             if (productTypeData == null)
             {
@@ -100,7 +100,7 @@ namespace TPFinalProgIII.Controllers
 
         [Route("create")]
         [HttpPut]
-        public ActionResult<ProductTypeDTO> CreateProductType(ProductTypeCreateOrUpdate productTypeData)
+        public ActionResult<ProductTypeDTO> CreateProductType(ProductTypeCreate productTypeData)
         {
             if (productTypeData == null)
             {

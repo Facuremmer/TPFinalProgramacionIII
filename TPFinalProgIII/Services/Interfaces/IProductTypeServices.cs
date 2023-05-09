@@ -12,7 +12,7 @@ namespace TPFinalProgIII.Services.Interfaces
         IEnumerable<TipoProducto> GetAll();
         TipoProducto GetOne(int productTypeId);
         void DeleteProductType(TipoProducto productType);
-        TipoProducto UpdateProductType(ProductTypeCreateOrUpdate data);
-        TipoProducto CreateProductType(ProductTypeCreateOrUpdate data);
+        TipoProducto UpdateProductType(ProductTypeDTO data);
+        TipoProducto CreateProductType(ProductTypeCreate data);
     }
 }
