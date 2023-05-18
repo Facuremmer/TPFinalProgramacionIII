@@ -39,6 +39,30 @@ namespace TPFinalProgIII.Controllers
             return purchaseDetailDTO;
         }
 
+        [Route("AllId")]
+        [HttpGet]
+        public IEnumerable<PurchaseDetailId> GetAllpurchaseDetailId()
+        {
+            var purchaseDetail = _purchaseDetailServices.GetAllpurchaseDetailId();
+            var purchaseDetailId = _mapper.Map<IEnumerable<PurchaseDetailId>>(purchaseDetail);
+            return purchaseDetailId;
+        }
+
+        [Route("byName")]
+        [HttpGet]
+
+        public ActionResult<PurchaseDetailDTO> GetByName(string purchaseDetailName)
+        {
+            var purchaseDetail = _purchaseDetailServices.GetByName(purchaseDetailName);
+            if (purchaseDetail == null)
+            {
+                return NotFound();
+            }
+
+            var purchaseDetailDTO = _mapper.Map<IEnumerable<PurchaseDetailDTO>>(purchaseDetail);
+            return Ok(purchaseDetailDTO);
+        }
+
         [HttpGet("{purchaseDetailId}")]
         public PurchaseDetailDTO GetOne(int purchaseDetailId)
         {
@@ -73,7 +97,7 @@ namespace TPFinalProgIII.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<PurchaseDetailDTO> UpdatePurchaseDetail(PurchaseDetailCreateOrUpdate purchaseDetailData)
+        public ActionResult<PurchaseDetailDTO> UpdatePurchaseDetail(PurchaseDetailUpdate purchaseDetailData)
         {
             if (purchaseDetailData == null)
             {
@@ -100,7 +124,7 @@ namespace TPFinalProgIII.Controllers
 
         [Route("create")]
         [HttpPut]
-        public ActionResult<PurchaseDetailDTO> CreatePurchaseDetail(PurchaseDetailCreateOrUpdate purchaseDetailData)
+        public ActionResult<PurchaseDetailDTO> CreatePurchaseDetail(PurchaseDetailCreate purchaseDetailData)
         {
             if (purchaseDetailData == null)
             {

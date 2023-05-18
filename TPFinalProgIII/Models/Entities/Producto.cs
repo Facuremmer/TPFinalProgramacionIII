@@ -16,6 +16,8 @@ namespace TPFinalProgIII.Models
         public int IdProducto { get; set; }
         public int? IdTipoProducto { get; set; }
         public int? StockActual { get; set; }
+        public double? Precio { get; set; }
+
 
         public virtual TipoProducto IdTipoProductoNavigation { get; set; }
         public virtual ICollection<DetalleCompra> DetalleCompra { get; set; }

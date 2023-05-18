@@ -35,7 +35,6 @@ namespace TPFinalProgIII.Services
             if (productType != null)
             {
                 productType.Descripcion = data.Descripcion;
-
                 _context.SaveChanges();
             }
             return productType;

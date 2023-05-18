@@ -18,9 +18,19 @@ namespace TPFinalProgIII.Services
             return _context.Venta;
         }
 
+        public IEnumerable<Venta> GetAllSaleId()
+        {
+            return _context.Venta;
+        }
+
         public Venta GetOne(int saleId)
         {
             return _context.Venta.SingleOrDefault(x => x.IdVenta == saleId);
+        }
+
+        public IEnumerable<Venta> GetByName(string branchName)
+        {
+            return _context.Venta.Where(x => EF.Functions.Like(x.SucursalVenta, $"%{branchName}"));
         }
 
         public void DeleteSale(Venta sale)
@@ -29,7 +39,7 @@ namespace TPFinalProgIII.Services
             _context.SaveChanges();
         }
 
-        public Venta UpdateSale(SaleCreateOrUpdate data)
+        public Venta UpdateSale(SaleUpdate data)
         {
             var sale = GetOne(data.idVenta);
             if (sale != null)
@@ -44,7 +54,7 @@ namespace TPFinalProgIII.Services
             return sale;
         }
 
-        public Venta CreateSale(SaleCreateOrUpdate data)
+        public Venta CreateSale(SaleCreate data)
         {
             var sale = new Venta()
             {

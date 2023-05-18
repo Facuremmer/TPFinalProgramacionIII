@@ -10,9 +10,12 @@ namespace TPFinalProgIII.Services.Interfaces
     public interface IPurchaseServices
     {
         IEnumerable<Compra> GetAll();
+
+        IEnumerable<Compra> GetAllPurchaseId();
         Compra GetOne(int purchaseId);
+        IEnumerable<Compra> GetByName(string purchaseName);
         void DeletePurchase(Compra purchase);
-        Compra UpdatePurchase(PurchaseCreateOrUpdate data);
-        Compra CreatePurchase(PurchaseCreateOrUpdate data);
+        Compra UpdatePurchase(PurchaseUpdate data);
+        Compra CreatePurchase(PurchaseCreate data);
     }
 }

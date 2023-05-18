@@ -18,9 +18,19 @@ namespace TPFinalProgIII.Services
             return _context.Proveedor.Include(c => c.IdCuitDniNavigation).ToList();
         }
 
-        public Proveedor GetOne(int providerId)
+        public IEnumerable<Proveedor> GetAllProviderId()
         {
-            return _context.Proveedor.Include(c => c.IdCuitDniNavigation).SingleOrDefault(x => x.IdProveedor == providerId);
+            return _context.Proveedor.Include(c => c.IdCuitDniNavigation.Proveedor).ToList();
+        }
+
+        public Proveedor GetOne(int idProvider)
+        {
+            return _context.Proveedor.Include(c => c.IdCuitDniNavigation).SingleOrDefault(x => x.IdProveedor == idProvider);
+        }
+
+        public IEnumerable<Proveedor> GetByName(string providerName)
+        {
+            return _context.Proveedor.Where(x => EF.Functions.Like(x.IdCuitDniNavigation.NombreCompleto, $"%{providerName}")).Include(c => c.IdCuitDniNavigation);
         }
 
         public void DeleteProvider(Proveedor provider)
@@ -31,7 +41,7 @@ namespace TPFinalProgIII.Services
 
         public Proveedor UpdateProvider(ProviderCreateOrUpdate data)
         {
-            var Provider = GetOne(data.idProveedor);
+            var Provider = GetOne(data.idProvider);
             if (Provider != null)
             {
                 Provider.IdCuitDni = data.idCuit_Dni;

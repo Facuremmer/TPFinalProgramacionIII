@@ -52,7 +52,6 @@ namespace TPFinalProgIII
             services.AddTransient<IPurchaseDetailServices, PurchaseDetailServices>(); 
             services.AddTransient<ISaleServices, SaleServices>();
             services.AddTransient<ISaleDetailServices, SaleDetailServices>();
-            services.AddTransient<ISaleShippingDataServices, SaleShippingDataServices>();
             services.AddTransient<IShippingPurchaseServices, ShippingPurchaseServices>();
             services.AddTransient<IShippingSaleServices, ShippingSaleServices>();
         }

@@ -20,7 +20,6 @@ namespace TPFinalProgIII.Models
 
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Compra> Compra { get; set; }
-        public virtual DbSet<DatosEnvioVenta> DatosEnvioVenta { get; set; }
         public virtual DbSet<DetalleCompra> DetalleCompra { get; set; }
         public virtual DbSet<DetalleVenta> DetalleVenta { get; set; }
         public virtual DbSet<Direccion> Direccion { get; set; }
@@ -73,37 +72,6 @@ namespace TPFinalProgIII.Models
                     .HasConstraintName("FK_Compra");
             });
 
-            modelBuilder.Entity<DatosEnvioVenta>(entity =>
-            {
-                entity.HasKey(e => e.IdDatosEnvioVenta)
-                    .HasName("PK__DatosEnv__99B2E6D8858BC8C4");
-
-                entity.Property(e => e.IdDatosEnvioVenta).HasColumnName("idDatosEnvioVenta");
-
-                entity.Property(e => e.Aclaraciones)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .IsFixedLength();
-
-                entity.Property(e => e.Calle)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Ciudad)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .IsFixedLength();
-
-                entity.Property(e => e.NombreCompleto)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .IsFixedLength();
-
-                entity.Property(e => e.Provincia)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .IsFixedLength();
-            });
 
             modelBuilder.Entity<DetalleCompra>(entity =>
             {
@@ -216,8 +184,6 @@ namespace TPFinalProgIII.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.IdDatosEnvioVenta).HasColumnName("idDatosEnvioVenta");
-
                 entity.Property(e => e.IdDetalleVenta).HasColumnName("idDetalleVenta");
 
                 entity.Property(e => e.IdDireccion).HasColumnName("idDireccion");
@@ -225,11 +191,6 @@ namespace TPFinalProgIII.Models
                 entity.Property(e => e.Sucursal)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.HasOne(d => d.IdDatosEnvioVentaNavigation)
-                    .WithMany(p => p.EnvioVenta)
-                    .HasForeignKey(d => d.IdDatosEnvioVenta)
-                    .HasConstraintName("FK_DatosEnvioVenta");
 
                 entity.HasOne(d => d.IdDetalleVentaNavigation)
                     .WithMany(p => p.EnvioVenta)

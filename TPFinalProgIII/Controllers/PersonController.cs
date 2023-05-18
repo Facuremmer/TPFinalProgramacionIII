@@ -47,6 +47,30 @@ namespace TPFinalProgIII.Controllers
             return personDTO;
         }
 
+        [Route("AllDni")]
+        [HttpGet]
+        public IEnumerable<PersonDNI> GetALLDni()
+        {
+            var person = _personServices.GetAll();
+            var personDNI = _mapper.Map<IEnumerable<PersonDNI>>(person);
+            return personDNI;
+        }
+
+        [Route("byName")]
+        [HttpGet]
+
+        public ActionResult<PersonDTO> GetByName(string personName)
+        {
+            var person = _personServices.GetByName(personName);
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            var personDTO = _mapper.Map<IEnumerable<PersonDTO>>(person);
+            return Ok(personDTO);
+        }
+
         [HttpDelete("{personId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -73,7 +97,7 @@ namespace TPFinalProgIII.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<PersonDTO> UpdatePerson(PersonCreateOrUpdate personData)
+        public ActionResult<PersonDTO> UpdatePerson(PersonDTO personData)
         {
             if (personData == null)
             {
@@ -100,7 +124,7 @@ namespace TPFinalProgIII.Controllers
 
         [Route("create")]
         [HttpPut]
-        public ActionResult<PersonDTO> CreatePerson(PersonCreateOrUpdate personData)
+        public ActionResult<PersonDTO> CreatePerson(PersonDTO personData)
         {
             if (personData == null)
             {

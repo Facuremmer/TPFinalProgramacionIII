@@ -9,12 +9,10 @@ namespace TPFinalProgIII.Models
     {
         public long IdCodigoSeguimiento { get; set; }
         public int? IdDetalleVenta { get; set; }
-        public int? IdDatosEnvioVenta { get; set; }
         public int? IdDireccion { get; set; }
         public string Correo { get; set; }
         public string Sucursal { get; set; }
 
-        public virtual DatosEnvioVenta IdDatosEnvioVentaNavigation { get; set; }
         public virtual DetalleVenta IdDetalleVentaNavigation { get; set; }
         public virtual Direccion IdDireccionNavigation { get; set; }
     }

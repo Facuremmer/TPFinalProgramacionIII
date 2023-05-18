@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TPFinalProgIII.Models.DataTranfers.SaleShippingData
+namespace TPFinalProgIII.Models.DataTranfers.Adress
 {
-    public class SaleShippingDataDTO
+    public class AdressUpdate
     {
-        public virtual string NombreCompleto { get; set; }
+        public virtual int idDireccion { get; set; }
+        public virtual long Dni { get; set; }
         public virtual string Provincia { get; set; }
         public virtual string Ciudad { get; set; }
         public virtual string Calle { get; set; }
         public virtual int Numero { get; set; }
-        public virtual string Aclaraciones { get; set; }
+
     }
 }

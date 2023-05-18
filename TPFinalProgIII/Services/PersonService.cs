@@ -18,10 +18,21 @@ namespace TPFinalProgIII.Services
             return _context.Persona;
         }
 
+        public IEnumerable<Persona> GetAllDni()
+        {
+            return _context.Persona;
+        }
+
         public Persona GetOne(long personId)
         {
             return _context.Persona.SingleOrDefault(x => x.IdCuitDni == personId);
         }
+
+        public IEnumerable<Persona> GetByName(string personName)
+        {
+            return _context.Persona.Where(x => EF.Functions.Like(x.NombreCompleto, $"%{personName}"));
+        }
+
 
         public void DeletePerson(Persona person)
         {
@@ -29,7 +40,7 @@ namespace TPFinalProgIII.Services
             _context.SaveChanges();
         }
 
-        public Persona UpdatePerson(PersonCreateOrUpdate data)
+        public Persona UpdatePerson(PersonDTO data)
         {
             var person = GetOne(data.idCuit_Dni);
             if (person != null)
@@ -40,7 +51,7 @@ namespace TPFinalProgIII.Services
             return person;
         }
 
-        public Persona CreatePerson(PersonCreateOrUpdate data)
+        public Persona CreatePerson(PersonDTO data)
         {
             var person = new Persona()
             {

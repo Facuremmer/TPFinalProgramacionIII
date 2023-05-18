@@ -39,12 +39,36 @@ namespace TPFinalProgIII.Controllers
             return saleDTO;
         }
 
+        [Route("AllId")]
+        [HttpGet]
+        public IEnumerable<SaleId> GetAllSaleId()
+        {
+            var sale = _saleServices.GetAllSaleId();
+            var saleId = _mapper.Map<IEnumerable<SaleId>>(sale);
+            return saleId;
+        }
+
         [HttpGet("{saleId}")]
         public SaleDTO GetOne(int saleId)
         {
             var sale = _saleServices.GetOne(saleId);
             var saleDTO = _mapper.Map<SaleDTO>(sale);
             return saleDTO;
+        }
+
+        [Route("byName")]
+        [HttpGet]
+
+        public ActionResult<SaleDTO> GetByName(string saleName)
+        {
+            var sale = _saleServices.GetByName(saleName);
+            if (sale == null)
+            {
+                return NotFound();
+            }
+
+            var saleDTO = _mapper.Map<IEnumerable<SaleDTO>>(sale);
+            return Ok(saleDTO);
         }
 
         [HttpDelete("{saleId}")]
@@ -73,7 +97,7 @@ namespace TPFinalProgIII.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<SaleDTO> UpdateSale(SaleCreateOrUpdate saleData)
+        public ActionResult<SaleDTO> UpdateSale(SaleUpdate saleData)
         {
             if (saleData == null)
             {
@@ -100,7 +124,7 @@ namespace TPFinalProgIII.Controllers
 
         [Route("create")]
         [HttpPut]
-        public ActionResult<SaleDTO> CreateSale(SaleCreateOrUpdate saleData)
+        public ActionResult<SaleDTO> CreateSale(SaleCreate saleData)
         {
             if (saleData == null)
             {

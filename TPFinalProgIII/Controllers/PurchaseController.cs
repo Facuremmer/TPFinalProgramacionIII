@@ -39,6 +39,31 @@ namespace TPFinalProgIII.Controllers
             return purchaseDTO;
         }
 
+        [Route("AllId")]
+        [HttpGet]
+        public IEnumerable<PurchaseId> GetAllPurchaseId()
+        {
+            var purchase = _purchaseServices.GetAllPurchaseId();
+            var purchaseId = _mapper.Map<IEnumerable<PurchaseId>>(purchase);
+            return purchaseId;
+        }
+
+
+        [Route("byName")]
+        [HttpGet]
+
+        public ActionResult<PurchaseDTO> GetByName(string purchaseName)
+        {
+            var purchase = _purchaseServices.GetByName(purchaseName);
+            if (purchase == null)
+            {
+                return NotFound();
+            }
+
+            var purchaseDTO = _mapper.Map<IEnumerable<PurchaseDTO>>(purchase);
+            return Ok(purchaseDTO);
+        }
+
         [HttpGet("{purchaseId}")]
         public PurchaseDTO GetOne(int purchaseId)
         {
@@ -73,7 +98,7 @@ namespace TPFinalProgIII.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<PurchaseDTO> UpdatePurchase(PurchaseCreateOrUpdate purchaseData)
+        public ActionResult<PurchaseDTO> UpdatePurchase(PurchaseUpdate purchaseData)
         {
             if (purchaseData == null)
             {
@@ -100,7 +125,7 @@ namespace TPFinalProgIII.Controllers
 
         [Route("create")]
         [HttpPut]
-        public ActionResult<PurchaseDTO> CreatePurchase(PurchaseCreateOrUpdate purchaseData)
+        public ActionResult<PurchaseDTO> CreatePurchase(PurchaseCreate purchaseData)
         {
             if (purchaseData == null)
             {

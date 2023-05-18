@@ -39,6 +39,15 @@ namespace TPFinalProgIII.Controllers
             return saleDetailDTO;
         }
 
+        [Route("AllId")]
+        [HttpGet]
+        public IEnumerable<SaleDetailId> GetAllsaleDetailId()
+        {
+            var saleDetail = _saleDetailServices.GetAllSaleDetailId();
+            var saleDetailId = _mapper.Map<IEnumerable<SaleDetailId>>(saleDetail);
+            return saleDetailId;
+        }
+
         [HttpGet("{saleDetailId}")]
         public SaleDetailDTO GetOne(int saleDetailId)
         {
@@ -46,6 +55,22 @@ namespace TPFinalProgIII.Controllers
             var saleDetailDTO = _mapper.Map<SaleDetailDTO>(saleDetail);
             return saleDetailDTO;
         }
+
+        [Route("byName")]
+        [HttpGet]
+
+        public ActionResult<SaleDetailDTO> GetByName(string branchName)
+        {
+            var saleDetail = _saleDetailServices.GetByName(branchName);
+            if (saleDetail == null)
+            {
+                return NotFound();
+            }
+
+            var saleDetailDTO = _mapper.Map<IEnumerable<SaleDetailDTO>>(saleDetail);
+            return Ok(saleDetailDTO);
+        }
+
 
         [HttpDelete("{saleDetailId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -73,7 +98,7 @@ namespace TPFinalProgIII.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<SaleDetailDTO> UpdateSaleDetail(SaleDetailCreateOrUpdate saleDetailData)
+        public ActionResult<SaleDetailDTO> UpdateSaleDetail(SaleDetaiUpdate saleDetailData)
         {
             if (saleDetailData == null)
             {
@@ -100,7 +125,7 @@ namespace TPFinalProgIII.Controllers
 
         [Route("create")]
         [HttpPut]
-        public ActionResult<SaleDetailDTO> CreateSaleDetail(SaleDetailCreateOrUpdate saleDetailData)
+        public ActionResult<SaleDetailDTO> CreateSaleDetail(SaleDetailCreate saleDetailData)
         {
             if (saleDetailData == null)
             {

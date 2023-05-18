@@ -12,6 +12,7 @@ namespace TPFinalProgIII.Services.Interfaces
     {
         //Me devuelve un enumerable de producto
         IEnumerable<Producto> GetAll();
+        IEnumerable<Producto> GetAllId();
         //Me trae un solo producto
         Producto GetOne(int productId);
         IEnumerable<Producto> GetByName(string productName);

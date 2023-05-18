@@ -18,6 +18,11 @@ namespace TPFinalProgIII.Services
             return _context.DetalleVenta;
         }
 
+        public IEnumerable<DetalleVenta> GetAllSaleDetailId()
+        {
+            return _context.DetalleVenta;
+        }
+
         public DetalleVenta GetOne(int saleDetailId)
         {
             return _context.DetalleVenta.SingleOrDefault(x => x.IdDetalleVenta == saleDetailId);
@@ -29,7 +34,12 @@ namespace TPFinalProgIII.Services
             _context.SaveChanges();
         }
 
-        public DetalleVenta UpdateSaleDetail(SaleDetailCreateOrUpdate data)
+        public IEnumerable<DetalleVenta> GetByName(string branchName)
+        {
+            return _context.DetalleVenta.Where(x => EF.Functions.Like(x.IdVentaNavigation.SucursalVenta, $"%{branchName}")).Include(c => c.IdVentaNavigation);
+        }
+
+        public DetalleVenta UpdateSaleDetail(SaleDetaiUpdate data)
         {
             var saleDetail = GetOne(data.idDetalleVenta);
             if (saleDetail != null)
@@ -37,6 +47,8 @@ namespace TPFinalProgIII.Services
                 saleDetail.IdVenta = data.idVenta;
                 saleDetail.IdProducto = data.idProducto;
                 saleDetail.Precio = data.Precio;
+                saleDetail.Cantidad = data.Cantidad;
+                saleDetail.Descuento = data.Descuento;
                 saleDetail.Recargo = data.Recargo;
 
                 _context.SaveChanges();
@@ -44,13 +56,15 @@ namespace TPFinalProgIII.Services
             return saleDetail;
         }
 
-        public DetalleVenta CreateSaleDetail(SaleDetailCreateOrUpdate data)
+        public DetalleVenta CreateSaleDetail(SaleDetailCreate data)
         {
             var saleDetail = new DetalleVenta()
             {
                 IdProducto = data.idProducto,
                 IdVenta = data.idVenta,
                 Precio = data.Precio,
+                Cantidad = data.Cantidad,
+                Descuento = data.Descuento,
                 Recargo = data.Recargo,
             };
 

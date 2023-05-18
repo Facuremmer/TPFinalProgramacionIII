@@ -18,9 +18,19 @@ namespace TPFinalProgIII.Services
             return _context.DetalleCompra.Include(c => c.IdCompraNavigation).ToList();
         }
 
+        public IEnumerable<DetalleCompra> GetAllpurchaseDetailId()
+        {
+            return _context.DetalleCompra;
+        }
+
         public DetalleCompra GetOne(int purchaseDetailId)
         {
             return _context.DetalleCompra.Include(c => c.IdCompraNavigation).SingleOrDefault(x => x.IdDetalleCompra == purchaseDetailId);
+        }
+
+        public IEnumerable<DetalleCompra> GetByName(string CompraDetailName)
+        {
+            return _context.DetalleCompra.Where(x => EF.Functions.Like(x.IdCompraNavigation.IdProveedorNavigation.IdCuitDniNavigation.NombreCompleto, $"%{CompraDetailName}")).Include(c => c.IdCompraNavigation.IdProveedorNavigation.IdCuitDniNavigation);
         }
 
         public void DeletePurchaseDetail(DetalleCompra purchaseDetail)
@@ -29,7 +39,7 @@ namespace TPFinalProgIII.Services
             _context.SaveChanges();
         }
 
-        public DetalleCompra UpdatePurchaseDetail(PurchaseDetailCreateOrUpdate data)
+        public DetalleCompra UpdatePurchaseDetail(PurchaseDetailUpdate data)
         {
             var purchaseDetail = GetOne(data.idDetalleCompra);
             if (purchaseDetail != null)
@@ -37,6 +47,7 @@ namespace TPFinalProgIII.Services
                 purchaseDetail.IdCompra = data.idCompra;
                 purchaseDetail.IdProducto = data.idProducto;
                 purchaseDetail.Precio = data.Precio;
+                purchaseDetail.Cantidad = data.Cantidad;
                 purchaseDetail.Retencion = data.Retencion;
 
                 _context.SaveChanges();
@@ -44,13 +55,14 @@ namespace TPFinalProgIII.Services
             return purchaseDetail;
         }
 
-        public DetalleCompra CreatePurchaseDetail(PurchaseDetailCreateOrUpdate data)
+        public DetalleCompra CreatePurchaseDetail(PurchaseDetailCreate data)
         {
             var purchaseDetail = new DetalleCompra()
             {
                 IdCompra = data.idCompra,
                 IdProducto = data.idProducto,
-                Precio= data.Precio,
+                Cantidad = data.Cantidad,
+                Precio = data.Precio,
                 Retencion = data.Retencion,
             };
 

@@ -65,51 +65,6 @@ namespace TPFinalProgIII.Migrations
                     b.ToTable("Compra");
                 });
 
-            modelBuilder.Entity("TPFinalProgIII.Models.DatosEnvioVenta", b =>
-                {
-                    b.Property<int>("IdDatosEnvioVenta")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("idDatosEnvioVenta")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Aclaraciones")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("char(50)")
-                        .IsFixedLength(true);
-
-                    b.Property<string>("Calle")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<string>("Ciudad")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("char(50)")
-                        .IsFixedLength(true);
-
-                    b.Property<string>("NombreCompleto")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("char(50)")
-                        .IsFixedLength(true);
-
-                    b.Property<int?>("Numero")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Provincia")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("char(50)")
-                        .IsFixedLength(true);
-
-                    b.HasKey("IdDatosEnvioVenta")
-                        .HasName("PK__DatosEnv__99B2E6D8858BC8C4");
-
-                    b.ToTable("DatosEnvioVenta");
-                });
 
             modelBuilder.Entity("TPFinalProgIII.Models.DetalleCompra", b =>
                 {
@@ -260,10 +215,6 @@ namespace TPFinalProgIII.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int?>("IdDatosEnvioVenta")
-                        .HasColumnType("int")
-                        .HasColumnName("idDatosEnvioVenta");
-
                     b.Property<int?>("IdDetalleVenta")
                         .HasColumnType("int")
                         .HasColumnName("idDetalleVenta");
@@ -279,8 +230,6 @@ namespace TPFinalProgIII.Migrations
 
                     b.HasKey("IdCodigoSeguimiento")
                         .HasName("PK__EnvioVen__62A20D8FE185BDDD");
-
-                    b.HasIndex("IdDatosEnvioVenta");
 
                     b.HasIndex("IdDetalleVenta");
 
@@ -493,10 +442,6 @@ namespace TPFinalProgIII.Migrations
 
             modelBuilder.Entity("TPFinalProgIII.Models.EnvioVenta", b =>
                 {
-                    b.HasOne("TPFinalProgIII.Models.DatosEnvioVenta", "IdDatosEnvioVentaNavigation")
-                        .WithMany("EnvioVenta")
-                        .HasForeignKey("IdDatosEnvioVenta")
-                        .HasConstraintName("FK_DatosEnvioVenta");
 
                     b.HasOne("TPFinalProgIII.Models.DetalleVenta", "IdDetalleVentaNavigation")
                         .WithMany("EnvioVenta")
@@ -507,8 +452,6 @@ namespace TPFinalProgIII.Migrations
                         .WithMany("EnvioVenta")
                         .HasForeignKey("IdDireccion")
                         .HasConstraintName("FK_PersonaCargada");
-
-                    b.Navigation("IdDatosEnvioVentaNavigation");
 
                     b.Navigation("IdDetalleVentaNavigation");
 

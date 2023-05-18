@@ -10,9 +10,11 @@ namespace TPFinalProgIII.Services.Interfaces
     public interface ISaleDetailServices
     {
         IEnumerable<DetalleVenta> GetAll();
+        IEnumerable<DetalleVenta> GetAllSaleDetailId();
         DetalleVenta GetOne(int saleDetailId);
+        IEnumerable<DetalleVenta> GetByName(string branchName);
         void DeleteSaleDetail(DetalleVenta saleDetail);
-        DetalleVenta UpdateSaleDetail(SaleDetailCreateOrUpdate data);
-        DetalleVenta CreateSaleDetail(SaleDetailCreateOrUpdate data);
+        DetalleVenta UpdateSaleDetail(SaleDetaiUpdate data);
+        DetalleVenta CreateSaleDetail(SaleDetailCreate data);
     }
 }

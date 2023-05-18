@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TPFinalProgIII.Models.DataTranfers.Sale
 {
-    public class SaleDTO
+    public class SaleUpdate
     {
         public virtual int idVenta { get; set; }
         public virtual int idCliente { get; set; }

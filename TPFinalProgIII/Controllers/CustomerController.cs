@@ -39,6 +39,30 @@ namespace TPFinalProgIII.Controllers
             return customerDTO;
         }
 
+        [Route("AllId")]
+        [HttpGet]
+        public IEnumerable<CustomerUpdate> GetAllCustomerId()
+        {
+            var customer = _customerServices.GetAllCustomerId();
+            var customerId = _mapper.Map<IEnumerable<CustomerUpdate>>(customer);
+            return customerId;
+        }
+
+        [Route("byName")]
+        [HttpGet]
+
+        public ActionResult<CustomerDTO> GetByName(string customerName)
+        {
+            var customer = _customerServices.GetByName(customerName);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            var customerDTO = _mapper.Map<IEnumerable<CustomerDTO>>(customer);
+            return Ok(customerDTO);
+        }
+
         [HttpGet("{customerId}")]
         public CustomerDTO GetOne(int customerId)
         {
@@ -73,7 +97,7 @@ namespace TPFinalProgIII.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<CustomerDTO> UpdateCustomer(CustomerCreateOrUpdate customerData)
+        public ActionResult<CustomerDTO> UpdateCustomer(CustomerUpdate customerData)
         {
             if (customerData == null)
             {
@@ -100,7 +124,7 @@ namespace TPFinalProgIII.Controllers
 
         [Route("create")]
         [HttpPut]
-        public ActionResult<CustomerDTO> CreateCustomer(CustomerCreateOrUpdate customerData)
+        public ActionResult<CustomerDTO> CreateCustomer(CustomerCreate customerData)
         {
             if (customerData == null)
             {

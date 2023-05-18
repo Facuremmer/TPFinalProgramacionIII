@@ -35,7 +35,6 @@ namespace TPFinalProgIII.Services
             if (shippingSale != null)
             {
                 shippingSale.IdDetalleVenta = data.idDetalleDeVenta;
-                shippingSale.IdDatosEnvioVenta = data.idDatosEnvioVenta;
                 shippingSale.IdDireccion = data.idDireccion;
                 shippingSale.Correo = data.Correo;
                 shippingSale.Sucursal = data.Sucursal;
@@ -51,7 +50,6 @@ namespace TPFinalProgIII.Services
             {
                 IdCodigoSeguimiento = data.idCodigoDeSeguimiento,
                 IdDetalleVenta = data.idDetalleDeVenta,
-                IdDatosEnvioVenta = data.idDatosEnvioVenta,
                 IdDireccion = data.idDireccion,
                 Correo = data.Correo,
                 Sucursal = data.Sucursal,

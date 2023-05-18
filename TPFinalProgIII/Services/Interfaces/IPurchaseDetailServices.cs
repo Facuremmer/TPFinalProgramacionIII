@@ -10,9 +10,11 @@ namespace TPFinalProgIII.Services.Interfaces
     public interface IPurchaseDetailServices
     {
         IEnumerable<DetalleCompra> GetAll();
+        IEnumerable<DetalleCompra> GetAllpurchaseDetailId();
         DetalleCompra GetOne(int purchaseDetailId);
+        IEnumerable<DetalleCompra> GetByName(string purchaseDetailName);
         void DeletePurchaseDetail(DetalleCompra purchaseDetail);
-        DetalleCompra UpdatePurchaseDetail(PurchaseDetailCreateOrUpdate data);
-        DetalleCompra CreatePurchaseDetail(PurchaseDetailCreateOrUpdate data);
+        DetalleCompra UpdatePurchaseDetail(PurchaseDetailUpdate data);
+        DetalleCompra CreatePurchaseDetail(PurchaseDetailCreate data);
     }
 }

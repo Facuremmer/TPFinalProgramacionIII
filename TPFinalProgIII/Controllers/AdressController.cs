@@ -40,12 +40,36 @@ namespace TPFinalProgIII.Controllers
             return adressDTO;
         }
 
+        [Route("AllId")]
+        [HttpGet]
+        public IEnumerable<AdressId> GetAllAdressId()
+        {
+            var adress = _adressServices.GetAllAdressId();
+            var adressId = _mapper.Map<IEnumerable<AdressId>>(adress);
+            return adressId;
+        }
+
         [HttpGet("{adressId}")]
         public AdressDTO GetOne(int adressId)
         {
             var adress = _adressServices.GetOne(adressId);
             var adressDTO = _mapper.Map<AdressDTO>(adress);
             return adressDTO;
+        }
+
+        [Route("byName")]
+        [HttpGet]
+
+        public ActionResult<AdressDTO> GetByName(string adressName)
+        {
+            var adress = _adressServices.GetByName(adressName);
+            if (adress == null)
+            {
+                return NotFound();
+            }
+
+            var adressDTO = _mapper.Map<IEnumerable<AdressDTO>>(adress);
+            return Ok(adressDTO);
         }
 
         [HttpDelete("{adressId}")]
@@ -74,7 +98,7 @@ namespace TPFinalProgIII.Controllers
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<AdressDTO> UpdateAdress(AdressCreateOrUpdate adressData)
+        public ActionResult<AdressDTO> UpdateAdress(AdressUpdate adressData)
         {
             if (adressData == null)
             {
@@ -101,7 +125,7 @@ namespace TPFinalProgIII.Controllers
 
         [Route("create")]
         [HttpPut]
-        public ActionResult<AdressDTO> CreateAdress(AdressCreateOrUpdate adressData)
+        public ActionResult<AdressDTO> CreateAdress(AdressCreate adressData)
         {
             if (adressData == null)
             {

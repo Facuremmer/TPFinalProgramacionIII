@@ -11,17 +11,17 @@ namespace TPFinalProgIII.Services
 {
     public class ProductServices : BaseServices, IProductServices
     {
-        /*private readonly StoreContext _context;
-        public ProductServices(StoreContext context)
-        {
-            _context = context;
-        }*/
         public ProductServices(StoreContext context)
             : base(context) { }
         public IEnumerable<Producto> GetAll()
         {
             return _context.Producto.Include(c => c.IdTipoProductoNavigation).ToList();
-        }   
+        }
+
+        public IEnumerable<Producto> GetAllId()
+        {
+            return _context.Producto;
+        }
 
         public Producto GetOne (int productId)
         {
@@ -46,6 +46,7 @@ namespace TPFinalProgIII.Services
             {
                 product.IdTipoProducto = data.idTipoProducto;
                 product.StockActual = data.StockActual;
+                product.Precio = data.Precio;
 
                 _context.SaveChanges();
             }
@@ -58,7 +59,8 @@ namespace TPFinalProgIII.Services
             {
                 IdProducto = data.idProducto,
                 IdTipoProducto = data.idTipoProducto,
-                StockActual = data.StockActual
+                StockActual = data.StockActual,
+                Precio = data.Precio
             };
 
             _context.Producto.Add(product);

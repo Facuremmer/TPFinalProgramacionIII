@@ -17,6 +17,7 @@ namespace TPFinalProgIII.Models
         public string Provincia { get; set; }
         public string Ciudad { get; set; }
         public string Calle { get; set; }
+        public int Numero { get; set; }
 
         public virtual Persona IdCuitDniNavigation { get; set; }
         public virtual ICollection<EnvioVenta> EnvioVenta { get; set; }

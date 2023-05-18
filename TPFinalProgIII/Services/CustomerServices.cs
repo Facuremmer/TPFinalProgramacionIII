@@ -15,12 +15,22 @@ namespace TPFinalProgIII.Services
             : base(context) { }
         public IEnumerable<Cliente> GetAll()
         {
-            return _context.Cliente;
+            return _context.Cliente.Include(c => c.IdCuitDniNavigation).ToList();
+        }
+
+        public IEnumerable<Cliente> GetAllCustomerId()
+        {
+            return _context.Cliente.Include(c => c.IdCuitDniNavigation.Cliente).ToList();
         }
 
         public Cliente GetOne(int customerId)
         {
             return _context.Cliente.SingleOrDefault(x => x.IdCliente == customerId);
+        }
+
+        public IEnumerable<Cliente> GetByName(string customerName)
+        {
+            return _context.Cliente.Where(x => EF.Functions.Like(x.IdCuitDniNavigation.NombreCompleto, $"%{customerName}")).Include(c => c.IdCuitDniNavigation);
         }
 
         public void DeleteCustomer(Cliente customer)
@@ -29,7 +39,7 @@ namespace TPFinalProgIII.Services
             _context.SaveChanges();
         }
 
-        public Cliente UpdateCustomer(CustomerCreateOrUpdate data)
+        public Cliente UpdateCustomer(CustomerUpdate data)
         {
             var customer = GetOne(data.idCliente);
             if (customer != null)
@@ -42,7 +52,7 @@ namespace TPFinalProgIII.Services
             return customer;
         }
 
-        public Cliente CreateCustomer(CustomerCreateOrUpdate data)
+        public Cliente CreateCustomer(CustomerCreate data)
         {
             var customer = new Cliente()
             {

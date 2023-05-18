@@ -15,12 +15,22 @@ namespace TPFinalProgIII.Services
             : base(context) { }
         public IEnumerable<Compra> GetAll()
         {
-            return _context.Compra;
+            return _context.Compra.Include(c => c.IdProveedorNavigation.IdCuitDniNavigation).ToList();
+        }
+
+        public IEnumerable<Compra> GetAllPurchaseId()
+        {
+            return _context.Compra.Include(c => c.IdProveedorNavigation.IdCuitDniNavigation).ToList();
         }
 
         public Compra GetOne(int purchaseId)
         {
-            return _context.Compra.SingleOrDefault(x => x.IdCompra == purchaseId);
+            return _context.Compra.Include(c => c.IdProveedorNavigation.IdCuitDniNavigation).SingleOrDefault(x => x.IdCompra == purchaseId);
+        }
+
+        public IEnumerable<Compra> GetByName(string CompraName)
+        {
+            return _context.Compra.Where(x => EF.Functions.Like(x.IdProveedorNavigation.Rubro, $"%{CompraName}")).Include(c => c.IdProveedorNavigation.IdCuitDniNavigation);
         }
 
         public void DeletePurchase(Compra purchase)
@@ -29,11 +39,12 @@ namespace TPFinalProgIII.Services
             _context.SaveChanges();
         }
 
-        public Compra UpdatePurchase(PurchaseCreateOrUpdate data)
+        public Compra UpdatePurchase(PurchaseUpdate data)
         {
             var purchase = GetOne(data.idCompra);
             if (purchase != null)
             {
+                purchase.IdProveedorNavigation.IdProveedor = data.idProveedor;
                 purchase.TotalCompra= data.TotalCompra;
                 purchase.Fecha = data.Fecha;
 
@@ -42,7 +53,7 @@ namespace TPFinalProgIII.Services
             return purchase;
         }
 
-        public Compra CreatePurchase(PurchaseCreateOrUpdate data)
+        public Compra CreatePurchase(PurchaseCreate data)
         {
             var purchase = new Compra()
             {

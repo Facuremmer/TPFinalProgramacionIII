@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace TPFinalProgIII.Models.DataTranfers.SaleDetail
 {
-    public class SaleDetailCreateOrUpdate
+    public class SaleDetailCreate
     {
-        public virtual int idDetalleVenta { get; set; }
         public virtual int idVenta { get; set; }
         public virtual int idProducto { get; set; }
         public virtual int Precio { get; set; }

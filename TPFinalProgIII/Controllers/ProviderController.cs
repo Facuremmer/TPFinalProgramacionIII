@@ -39,6 +39,30 @@ namespace TPFinalProgIII.Controllers
             return providerDTO;
         }
 
+        [Route("AllId")]
+        [HttpGet]
+        public IEnumerable<ProviderId> GetAllProviderId()
+        {
+            var provider = _providerServices.GetAllProviderId();
+            var providerId = _mapper.Map<IEnumerable<ProviderId>>(provider);
+            return providerId;
+        }
+
+        [Route("byName")]
+        [HttpGet]
+
+        public ActionResult<ProviderDTO> GetByName(string providerName)
+        {
+            var provider = _providerServices.GetByName(providerName);
+            if (provider == null)
+            {
+                return NotFound();
+            }
+
+            var providerDTO = _mapper.Map<IEnumerable<ProviderDTO>>(provider);
+            return Ok(providerDTO);
+        }
+
         [HttpGet("{providerId}")]
         public ProviderDTO GetOne(int providerId)
         {
