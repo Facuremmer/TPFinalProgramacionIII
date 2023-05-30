@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TPFinalProgIII.Models;
 using TPFinalProgIII.Models.DataTranfers.Sale;
 using TPFinalProgIII.Services.Interfaces;
