@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace TPFinalProgIII.Models.DataTranfers.Sale
 {
     public class SaleUpdate

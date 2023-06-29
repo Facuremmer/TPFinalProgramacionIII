@@ -122,23 +122,23 @@ namespace TPFinalProgIII.Controllers
         }
 
         [Route("create")]
-        [HttpPut]
-        public ActionResult<PurchaseDTO> CreatePurchase(PurchaseCreate purchaseData)
+        [HttpPost] // Cambiar a HttpPost en lugar de HttpPut
+        public ActionResult<PurchaseDTO> CreateSale(PurchaseCreate saleData)
         {
-            if (purchaseData == null)
+            if (saleData == null)
             {
                 return StatusCode(StatusCodes.Status406NotAcceptable, "La información no puede ser nula");
             }
             try
             {
-                var purchase = _purchaseServices.CreatePurchase(purchaseData);
-                if (purchase == null)
+                var sale = _purchaseServices.CreatePurchase(saleData);
+                if (sale == null)
                 {
                     return StatusCode(StatusCodes.Status400BadRequest, "No se puede crear");
                 }
                 else
                 {
-                    return Ok(_mapper.Map<PurchaseDTO>(purchase));
+                    return Ok(_mapper.Map<PurchaseDTO>(sale));
                 }
             }
             catch (Exception ex)

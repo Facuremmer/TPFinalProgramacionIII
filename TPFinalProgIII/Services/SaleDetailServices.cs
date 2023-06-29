@@ -54,22 +54,5 @@ namespace TPFinalProgIII.Services
             return saleDetail;
         }
 
-        public DetalleVenta CreateSaleDetail(SaleDetailCreate data)
-        {
-            var saleDetail = new DetalleVenta()
-            {
-                IdProducto = data.idProducto,
-                IdVenta = data.idVenta,
-                Precio = data.Precio,
-                Cantidad = data.Cantidad,
-                Descuento = data.Descuento,
-                Recargo = data.Recargo,
-            };
-
-            _context.DetalleVenta.Add(saleDetail);
-            _context.SaveChanges();
-
-            return saleDetail;
-        }
     }
 }

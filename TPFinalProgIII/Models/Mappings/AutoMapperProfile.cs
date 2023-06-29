@@ -87,8 +87,8 @@ namespace TPFinalProgIII.Models.Mappings
 
             CreateMap<Compra, PurchaseDTO>()
                 .ForMember(x => x.idCompra, opt => opt.MapFrom(o => o.IdCompra))
-                .ForMember(x => x.idCuit_Dni, opt => opt.MapFrom(o => o.IdProveedorNavigation.IdCuitDniNavigation.IdCuitDni))
-                .ForMember(x => x.nombreProveedor, opt => opt.MapFrom(o => o.IdProveedorNavigation.IdCuitDniNavigation.NombreCompleto))
+                //.ForMember(x => x.idCuit_Dni, opt => opt.MapFrom(o => o.IdProveedorNavigation.IdCuitDniNavigation.IdCuitDni))
+                //.ForMember(x => x.nombreProveedor, opt => opt.MapFrom(o => o.IdProveedorNavigation.IdCuitDniNavigation.NombreCompleto))
                 .ForMember(x => x.idProveedor, opt => opt.MapFrom(o => o.IdProveedorNavigation.IdProveedor))
                 .ForMember(x => x.Rubro, opt => opt.MapFrom(o => o.IdProveedorNavigation.Rubro))
                 .ForMember(x => x.TotalCompra, opt => opt.MapFrom(o => o.TotalCompra))

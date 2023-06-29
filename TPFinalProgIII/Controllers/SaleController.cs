@@ -121,7 +121,7 @@ namespace TPFinalProgIII.Controllers
         }
 
         [Route("create")]
-        [HttpPut]
+        [HttpPost] // Cambiar a HttpPost en lugar de HttpPut
         public ActionResult<SaleDTO> CreateSale(SaleCreate saleData)
         {
             if (saleData == null)

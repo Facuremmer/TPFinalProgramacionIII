@@ -54,18 +54,35 @@ namespace TPFinalProgIII.Services
 
         public Venta CreateSale(SaleCreate data)
         {
-            var sale = new Venta()
+            var venta = new Venta()
             {
                 IdCliente = data.idCliente,
                 SucursalVenta = data.SucursalVenta,
                 TotalVenta = data.TotalVenta,
                 Fecha = data.Fecha,
+                DetalleVenta = new List<DetalleVenta>() // Inicializar la lista de detalles de venta
             };
 
-            _context.Venta.Add(sale);
+            // Agregar los detalles de venta
+            foreach (var detalleData in data.DetallesVenta)
+            {
+                var detalleVenta = new DetalleVenta()
+                {
+                    IdVenta = detalleData.idVenta,
+                    IdProducto = detalleData.idProducto,
+                    Precio = detalleData.Precio,
+                    Cantidad = detalleData.Cantidad,
+                    Descuento = detalleData.Descuento,
+                    Recargo = detalleData.Recargo
+                };
+
+                venta.DetalleVenta.Add(detalleVenta);
+            }
+
+            _context.Venta.Add(venta);
             _context.SaveChanges();
 
-            return sale;
+            return venta;
         }
     }
 }

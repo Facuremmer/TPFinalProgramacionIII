@@ -52,7 +52,6 @@ namespace TPFinalProgIII
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         
-        //VER COMO ARREGLAR PARA PODER USAR SWAGGER, DE ULTIMA FIJARME EN EL PROYECTO QUE ARRANCAMOS EL AÑO PASADO.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseCors(options =>
