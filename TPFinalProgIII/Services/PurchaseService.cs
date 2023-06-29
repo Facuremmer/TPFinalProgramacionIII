@@ -37,7 +37,7 @@ namespace TPFinalProgIII.Services
             _context.SaveChanges();
         }
 
-        public Compra UpdatePurchase(PurchaseUpdate data)
+    public Compra UpdatePurchase(PurchaseUpdate data)
         {
             var purchase = GetOne(data.idCompra);
             if (purchase != null)
@@ -58,7 +58,23 @@ namespace TPFinalProgIII.Services
                 IdProveedor = data.idProveedor,
                 TotalCompra = data.TotalCompra,
                 Fecha = data.Fecha,
+                DetalleCompra = new List<DetalleCompra>()
             };
+
+            // Agregar los detalles de compra
+            foreach (var detalleData in data.DetallesCompra)
+            {
+                var detalleCompra = new DetalleCompra()
+                {
+                    IdCompra = detalleData.idCompra,
+                    IdProducto = detalleData.idProducto,
+                    Precio = detalleData.Precio,
+                    Cantidad = detalleData.Cantidad,
+                    Retencion = detalleData.Retencion
+                };
+
+                purchase.DetalleCompra.Add(detalleCompra);
+            }
 
             _context.Compra.Add(purchase);
             _context.SaveChanges();

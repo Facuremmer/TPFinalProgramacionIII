@@ -13,6 +13,5 @@ namespace TPFinalProgIII.Services.Interfaces
         IEnumerable<DetalleCompra> GetByName(string purchaseDetailName);
         void DeletePurchaseDetail(DetalleCompra purchaseDetail);
         DetalleCompra UpdatePurchaseDetail(PurchaseDetailUpdate data);
-        DetalleCompra CreatePurchaseDetail(PurchaseDetailCreate data);
     }
 }

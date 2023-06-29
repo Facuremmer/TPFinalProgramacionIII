@@ -13,6 +13,5 @@ namespace TPFinalProgIII.Services.Interfaces
         IEnumerable<DetalleVenta> GetByName(string branchName);
         void DeleteSaleDetail(DetalleVenta saleDetail);
         DetalleVenta UpdateSaleDetail(SaleDetaiUpdate data);
-        DetalleVenta CreateSaleDetail(SaleDetailCreate data);
     }
 }

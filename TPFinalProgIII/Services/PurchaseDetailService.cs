@@ -53,21 +53,5 @@ namespace TPFinalProgIII.Services
             return purchaseDetail;
         }
 
-        public DetalleCompra CreatePurchaseDetail(PurchaseDetailCreate data)
-        {
-            var purchaseDetail = new DetalleCompra()
-            {
-                IdCompra = data.idCompra,
-                IdProducto = data.idProducto,
-                Cantidad = data.Cantidad,
-                Precio = data.Precio,
-                Retencion = data.Retencion,
-            };
-
-            _context.DetalleCompra.Add(purchaseDetail);
-            _context.SaveChanges();
-
-            return purchaseDetail;
-        }
     }
 }

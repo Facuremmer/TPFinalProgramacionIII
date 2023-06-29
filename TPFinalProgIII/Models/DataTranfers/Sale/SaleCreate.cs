@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using TPFinalProgIII.Models.DataTranfers.SaleDetail;
 
 namespace TPFinalProgIII.Models.DataTranfers.Sale
 {
@@ -9,5 +10,7 @@ namespace TPFinalProgIII.Models.DataTranfers.Sale
         public virtual string SucursalVenta { get; set; }
         public virtual DateTime Fecha { get; set; }
         public virtual int TotalVenta { get; set; }
+
+        public List<SaleDetailCreate> DetallesVenta { get; set; }
     }
 }

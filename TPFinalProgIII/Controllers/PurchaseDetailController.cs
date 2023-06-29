@@ -120,31 +120,5 @@ namespace TPFinalProgIII.Controllers
             }
         }
 
-        [Route("create")]
-        [HttpPut]
-        public ActionResult<PurchaseDetailDTO> CreatePurchaseDetail(PurchaseDetailCreate purchaseDetailData)
-        {
-            if (purchaseDetailData == null)
-            {
-                return StatusCode(StatusCodes.Status406NotAcceptable, "La información no puede ser nula");
-            }
-            try
-            {
-                var purchaseDetail = _purchaseDetailServices.CreatePurchaseDetail(purchaseDetailData);
-                if (purchaseDetail == null)
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest, "No se puede crear");
-                }
-                else
-                {
-                    return Ok(_mapper.Map<PurchaseDetailDTO>(purchaseDetail));
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error al crear");
-            }
-        }
     }
 }

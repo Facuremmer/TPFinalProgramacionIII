@@ -121,31 +121,5 @@ namespace TPFinalProgIII.Controllers
             }
         }
 
-        [Route("create")]
-        [HttpPut]
-        public ActionResult<SaleDetailDTO> CreateSaleDetail(SaleDetailCreate saleDetailData)
-        {
-            if (saleDetailData == null)
-            {
-                return StatusCode(StatusCodes.Status406NotAcceptable, "La información no puede ser nula");
-            }
-            try
-            {
-                var saleDetail = _saleDetailServices.CreateSaleDetail(saleDetailData);
-                if (saleDetail == null)
-                {
-                    return StatusCode(StatusCodes.Status400BadRequest, "No se puede crear");
-                }
-                else
-                {
-                    return Ok(_mapper.Map<SaleDetailDTO>(saleDetail));
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message);
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error al crear");
-            }
-        }
     }
 }
